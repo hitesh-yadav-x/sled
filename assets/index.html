@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session ledger</title>
+<link rel="icon" href="data:,">
+<link rel="preload" href="/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="app">
+  <nav class="rail" aria-label="Projects">
+    <p class="brand"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>Session ledger</p>
+    <h2>Projects</h2>
+    <ul class="projects" id="projects"></ul>
+  </nav>
+
+  <main class="main">
+    <header class="head">
+      <h1 id="heading">Sessions</h1>
+      <input class="search" id="search" type="search" placeholder="Search sessions" aria-label="Search titles, descriptions, notes and branches">
+      <div class="range" id="range" role="group" aria-label="Period">
+        <button type="button" data-period="7" aria-pressed="false">7 days</button>
+        <button type="button" data-period="14" aria-pressed="true">14 days</button>
+        <button type="button" data-period="all" aria-pressed="false">All time</button>
+      </div>
+      <label class="toggle"><input type="checkbox" id="automated"> Show automated runs</label>
+    </header>
+
+    <div class="content">
+      <div class="stats" id="stats"></div>
+      <p class="basis" id="stale" hidden>Not updating. Is "sled serve" still running?</p>
+      <p class="basis" id="basis" hidden></p>
+      <p class="basis" id="demo" hidden>Demo mode. Project names, folders, branches, titles, prompts and notes are made up. Times, tokens and costs are real.</p>
+      <table id="table" hidden>
+        <colgroup id="cols"></colgroup>
+        <thead><tr id="thead"></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty" id="empty" role="status"></div>
+    </div>
+  </main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="d-title">
+  <div class="d-head">
+    <div>
+      <h2 id="d-title"></h2>
+      <p id="d-sub"></p>
+    </div>
+    <button type="button" class="close" id="close">Close</button>
+  </div>
+  <div class="d-body">
+    <section>
+      <h3>Resume this session</h3>
+      <div class="resume">
+        <div id="d-can-resume">
+          <code id="d-cmd"></code>
+          <p class="aside" id="d-dir-gone" hidden>This folder no longer exists, so the command will stop at cd.</p>
+          <div class="row">
+            <button type="button" class="primary" id="copy">Copy resume command</button>
+            <span class="said" id="said" role="status"></span>
+          </div>
+        </div>
+        <p class="gone" id="d-gone" hidden></p>
+      </div>
+    </section>
+    <section>
+      <h3>What it was doing</h3>
+      <p id="d-desc"></p>
+    </section>
+    <section>
+      <h3><label for="d-note">Your note</label></h3>
+      <textarea id="d-note" placeholder="Add a note for when you come back" maxlength="4000"></textarea>
+      <span class="saved" id="d-saved" role="status"></span>
+    </section>
+    <section class="asks">
+      <div id="d-first-box"><h3>Started with</h3><blockquote id="d-first"></blockquote></div>
+      <div id="d-last-box"><h3>Left off at</h3><blockquote id="d-last"></blockquote></div>
+    </section>
+    <section>
+      <h3>Tokens and cost</h3>
+      <table class="figures"><tbody id="d-fig"></tbody></table>
+      <p class="split" id="d-split" hidden></p>
+    </section>
+    <section>
+      <h3>Details</h3>
+      <dl class="facts" id="d-facts"></dl>
+    </section>
+  </div>
+</aside>
+
+<script src="/app.js"></script>
+</body>
+</html>
