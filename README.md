@@ -4,6 +4,12 @@ sled is a ledger of your Claude Code sessions. It records each session's title, 
 
 Nothing in sled makes an outbound network request. The page is served on `127.0.0.1` only.
 
+![The sled page: a list of projects on the left, totals for sessions, projects, tokens and estimated cost at the top, and a table of sessions grouped by day with folder, branch, last active time, tokens and cost.](docs/screenshots/sessions.png)
+
+![A session's details: the resume command with a copy button, what the session was doing, a note field, the first and last prompt, and the token breakdown.](docs/screenshots/session-details.png)
+
+The screenshots were taken in demo mode (`sled serve --demo`), so the project names, titles and prompts in them are made up.
+
 ## Install
 
 You need a Rust toolchain.
